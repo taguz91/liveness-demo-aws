@@ -2,6 +2,8 @@
 
 This project contains an AWS code framework, this demo is only for testing purposes. 
 
+--- 
+
 Create `public/weights/` directory if not exists.
 
 Download the ML models from [face-api.js library](https://github.com/justadudewhohacks/face-api.js):
