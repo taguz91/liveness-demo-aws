@@ -1,5 +1,6 @@
-# Demo face recognition
+# Demo face recognition - Using AWS base framework 
 
+This project contains an AWS code framework, this demo is only for testing purposes. 
 
 Create `public/weights/` directory if not exists.
 
