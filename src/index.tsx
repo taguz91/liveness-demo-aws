@@ -5,15 +5,12 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-import { AmplifyAuthenticator } from "@aws-amplify/ui-react";
 
 import LivenessDetection from "./liveness/LivenessDetection";
 
 ReactDOM.render(
   <React.StrictMode>
-    <AmplifyAuthenticator>
-      <LivenessDetection />
-    </AmplifyAuthenticator>
+    <LivenessDetection />
   </React.StrictMode>,
   document.getElementById("root")
 );

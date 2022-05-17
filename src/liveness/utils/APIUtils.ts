@@ -3,26 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Amplify, API, Auth } from "aws-amplify";
 import { ConfigUtils } from "./ConfigUtils";
 import { MediaUtils } from "./MediaUtils";
 import { LogUtils } from "./LogUtils";
-
-Amplify.configure({
-  Auth: {
-    region: process.env.REACT_APP_AWS_REGION,
-    userPoolId: process.env.REACT_APP_USER_POOL_ID,
-    userPoolWebClientId: process.env.REACT_APP_USER_POOL_WEB_CLIENT_ID
-  },
-  API: {
-    endpoints: [
-      {
-        name: process.env.REACT_APP_API_NAME,
-        endpoint: process.env.REACT_APP_API_URL
-      }
-    ]
-  }
-});
+import { API } from "./API";
 
 export interface ChallengeMetadata {
   readonly id: string;
@@ -38,7 +22,8 @@ export interface ChallengeResult {
 export class APIUtils {
   static async getAuthorizationHeader() {
     return {
-      Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
+      // Aqui usabamos el token de amplify
+      Authorization: `Bearer ABCD1234`
     };
   }
 
@@ -89,7 +74,7 @@ export class APIUtils {
   }
 
   static async verifyChallenge(challengeId: string, token: string): Promise<ChallengeResult> {
-    const path: string = ConfigUtils.getConfig().API_VERIFY_ENDPOINT_PATTERN.replace("{challengeId}", challengeId);
+    const path: string = ConfigUtils.getConfig().API_VERIFY_ENDPOINT_PATTERN;
     const init = {
       headers: await APIUtils.getAuthorizationHeader(),
       body: {

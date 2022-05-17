@@ -4,7 +4,6 @@
  */
 
 import React from "react";
-import { AmplifySignOut } from "@aws-amplify/ui-react";
 // @ts-ignore
 import Lottie from "react-lottie";
 import { MediaUtils } from "../utils/MediaUtils";
@@ -126,7 +125,7 @@ export default class Welcome extends React.Component<Props, State> {
           </div>
           <div className="d-flex justify-content-center mt-5">
             <div>
-              <AmplifySignOut />
+              <p>AQUI ESTABA EL SIGOUT DE AWS amplify</p>
             </div>
           </div>
         </div>

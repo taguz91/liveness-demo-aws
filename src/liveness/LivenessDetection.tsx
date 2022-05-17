@@ -4,7 +4,6 @@
  */
 
 import React from "react";
-import { Hub } from "aws-amplify";
 import "./LivenessDetection.css";
 import "./app.scss";
 import Welcome from "./components/Welcome";
@@ -46,11 +45,8 @@ export default class LivenessDetection extends React.Component<Props, State> {
     this.onRestart = this.onRestart.bind(this);
     this.onError = this.onError.bind(this);
 
-    Hub.listen("auth", (data: any): void => {
-      if (data.payload.event === "signOut") {
-        window.location.reload();
-      }
-    });
+    // Cuando detectaba que era auth
+    // Se recargaba la pagina para reiniciar todo el flujo
   }
 
   onStart(challengeType: string): void {
@@ -60,6 +56,7 @@ export default class LivenessDetection extends React.Component<Props, State> {
     const self = this;
     APIUtils.startChallenge(challengeType)
       .then((challengeMetadata: ChallengeMetadata) => {
+        console.log("METADA: ", challengeMetadata);
         this.setState({ challengeMetadata: challengeMetadata });
         this.setState({ step: 2 });
       })

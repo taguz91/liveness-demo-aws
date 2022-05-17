@@ -3,31 +3,20 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Logger } from "aws-amplify";
-
-const LOGGER_NAME = "LivenessDetection";
-
-let LOG_LEVEL = "DEBUG";
-if (process.env.NODE_ENV === "production") {
-  LOG_LEVEL = "ERROR";
-}
-
 export class LogUtils {
-  private static logger = new Logger(LOGGER_NAME, LOG_LEVEL);
-
   public static debug(...msg: any[]): void {
-    LogUtils.logger.debug(...msg);
+    console.log("DEBUG:", msg);
   }
 
   public static info(...msg: any[]): void {
-    LogUtils.logger.info(...msg);
+    console.log("INFO:", msg);
   }
 
   public static warn(...msg: any[]): void {
-    LogUtils.logger.warn(...msg);
+    console.warn("WARNING:", msg);
   }
 
   public static error(...msg: any[]): void {
-    LogUtils.logger.error(...msg);
+    console.error("ERROR:", msg);
   }
 }
